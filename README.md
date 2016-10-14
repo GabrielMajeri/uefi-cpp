@@ -22,4 +22,4 @@ The project is composed of two parts:
 This wrapper for the UEFI specification is licensed under a permissive MIT license. See [LICENSE](LICENSE) for more information.
 
 # Contributions
-Anyone is welcome to contribute to this project. Please try to adhere to modern C++ features and avoid C-style hacks. Use the **Issues** tab to submit bugs or feature requests, or submit improved code as **Pull requests**.
+Anyone is welcome to contribute to this project. Please try to adhere to modern C++ coding style & guidelines and avoid C-style hacks. Use the **Issues** tab to submit bugs or feature requests, or submit improved code as **Pull requests**.
