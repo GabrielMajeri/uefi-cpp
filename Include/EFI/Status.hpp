@@ -6,6 +6,7 @@ namespace EFI
 {
 	namespace Detail
 	{
+		// Error codes are normal values with the most significant bit set.
 		constexpr std::int64_t makeErrorCode(std::int64_t code)
 		{
 			return code | (1ll << 63ll);
@@ -16,6 +17,7 @@ namespace EFI
 		: std::int64_t
 	{
 		/// Success values (high bit clear).
+		/// The operation succedded.
 		Success = 0,
 
 		/// Warning codes (high bit clear).
@@ -35,22 +37,30 @@ namespace EFI
 		NotReady = Detail::makeErrorCode(6),
 		DeviceError = Detail::makeErrorCode(7),
 		WriteProtected = Detail::makeErrorCode(8),
+		
+		// TODO: add all the error codes.
+		
 		CRCError = Detail::makeErrorCode(27),
 		HTTPError = Detail::makeErrorCode(35)
 	};
-
+	
+	/// Checks if a status code represents a success code.
 	constexpr bool isSuccess(Status statusCode)
 	{
 		return statusCode == Status::Success;
 	}
-
+	
+	/// Check if a status code represents a warning.
 	constexpr bool isWarning(Status statusCode)
 	{
+		// Warnings have the high bit clear, they are positive integers.
 		return static_cast<std::int64_t>(statusCode) > 0;
 	}
-
+	
+	/// Checks if a status code represents an error.
 	constexpr bool isError(Status statusCode)
 	{
+		// Error codes have the high bit set, they are viewed as negative integers.
 		return static_cast<std::int64_t>(statusCode) < 0;
 	}
 	
