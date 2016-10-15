@@ -15,29 +15,29 @@ namespace EFI
 		Console(const Console&) = delete;
 		Console& operator=(const Console&) = delete;
 
-		void reset() noexcept
+		void reset()
 		{
 			cout->reset(cout, false);
 		}
 
-		Console& printNewLine() noexcept
+		Console& printNewLine()
 		{
 			return printString(u"\xD\xA");
 		}
 
-		Console& printChar16(char16_t ch) noexcept
+		Console& printChar16(char16_t ch)
 		{
 			return printString(&ch);
 		}
 
-		Console& printString(const char16_t* rhs) noexcept
+		Console& printString(const char16_t* rhs)
 		{
 			cout->outputString(cout, rhs);
 			
 			return *this;
 		}
 
-		Console& printUInt(std::uint64_t n) noexcept
+		Console& printUInt(std::uint64_t n)
 		{
 			if (n == 0) 
 			{
