@@ -1,6 +1,8 @@
 # C++ UEFI Wrapper
 This project is a C++ wrapper for the UEFI specification, intended for people who write UEFI applications (OS loaders, shells, etc.)
 
+This wrapper only supports 64 bit versions of UEFI.
+
 The project is composed of two parts:
 - The low-level wrapper, that uses structs and pointers to directly implement the UEFI specification.
 - The high-level, object-oriented wrapper, that uses classes to represent various UEFI protocols.
