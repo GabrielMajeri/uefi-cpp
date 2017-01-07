@@ -37,7 +37,7 @@ Performance difference? Zero. Zero cost abstractions make this possible.
 - Relies on some C/C++ headers, but does not require a hosted standard library.
 
 # Required software
-* C++14 compatible compiler (Clang, newer versions of MSVC, GCC).
+* C++14 compatible compiler (Clang, GCC).
 * A C++14 standard library (including the C headers). This wrapper only uses non-hosted functions from the standard lib, therefore it doesn't require a runtime. Some of the required headers:
   - `<cstdint>`: for cross-architecture integer types.
   - `<cstddef>`: for size_t.
