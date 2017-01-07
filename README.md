@@ -37,7 +37,11 @@ Performance difference? Zero. Zero cost abstractions make this possible.
 
 # Required software
 * C++14 compatible compiler (Clang, newer versions of MSVC, GCC).
-* A C++14 standard library (including the C headers). This wrapper only uses non-hosted functions from the standard lib, therefore it doesn't require a runtime.
+* A C++14 standard library (including the C headers). This wrapper only uses non-hosted functions from the standard lib, therefore it doesn't require a runtime. Some of the required headers:
+  - &lt;cstdint&gt;: for cross-architecture integer types.
+  - &lt;cstddef&gt;: for size_t.
+  - &lt;type_traits&gt;: for some template metaprogramming and static assertions.
+  - &lt;utility&gt;: for some utility functions (e.g. std::swap()).
 
 * *(Optional)* QEmu with OVMF to be able to test UEFI apps in a virtual machine.
 
