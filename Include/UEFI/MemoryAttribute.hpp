@@ -7,8 +7,8 @@ namespace UEFI
 	/// Attributes of the memory region that describe the bit mask of capabilities for that memory region.
 	enum class MemoryAttribute : std::uint64_t
 	{
-		/// @defgroup Cacheability attributes
-		/// @{
+		/// Cacheability attributes
+        /// @{
 		Uncacheable = 0x1,
 		WriteCombining = 0x2,
 		/// Writes that hit in the cache will also be written to main memory.
@@ -20,7 +20,7 @@ namespace UEFI
 		UncacheableExported = 0x10,
 		/// @}
 
-		/// @defgroup Physical memory protection attributes
+		/// Physical memory protection attributes
 		/// @{
 		/// This is typically used as a cacheability attribute today.
 		/// The memory region supports being configured as cacheable with a "write protected" policy.
@@ -33,7 +33,7 @@ namespace UEFI
 		ExecuteProtected = 0x4000,
 		/// @}
 
-		/// @defgroup Runtime memory attributes
+		/// Runtime memory attributes
 		/// @{
 		/// The memory region refers to persistent memory.
 		NonVolatile = 0x8000,
@@ -42,7 +42,7 @@ namespace UEFI
 		Runtime = 0x8000000000000000,
 		/// @}
 
-		/// @defgroup Reliability attributes
+		/// Reliability attributes
 		/// @{
 		/// The memory region provides higher reliability relative to other memory in the system.
 		/// If all memory has the same reliability, then this bit is not used.

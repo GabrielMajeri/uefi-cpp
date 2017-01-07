@@ -2,6 +2,7 @@
 
 #include "CRC32.hpp"
 #include "Signature.hpp"
+#include "Revision.hpp"
 
 namespace UEFI
 {
@@ -11,10 +12,7 @@ namespace UEFI
 		Signature signature;
 
 		/// The revision of the EFI Specification to which this table conforms.
-		struct
-		{
-			std::uint16_t minor, major;
-		} revision;
+		Revision revision;
 
 		/// The size, in bytes, of the entire table including this structure.
 		std::uint32_t size;

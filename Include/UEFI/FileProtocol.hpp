@@ -4,6 +4,8 @@
 #include "NonCopyable.hpp"
 #include "GUID.hpp"
 
+#include "Detail/BitFlags.hpp"
+
 namespace UEFI
 {
 	template <std::size_t labelSize = 128>
@@ -28,41 +30,35 @@ namespace UEFI
 		char16_t volumeLabel[labelSize];
 	};
 
+	enum class OpenMode : std::uint64_t
+	{
+		Create = 0x8000000000000000,
+		Read = 1,
+		Write = 2
+	};
+
+	UEFI_BIT_FLAGS(OpenMode);
+
+	enum class FileAttributes : std::uint64_t
+	{
+		None = 0,
+		ReadOnly = 1,
+		Hidden = 2,
+		System = 4,
+		Reserved = 8,
+		Directory = 0x10,
+		Archive = 0x20,
+		ValidAttr = 0x37
+	};
+
+	UEFI_BIT_FLAGS(FileAttributes);
+
 	/// Provides file based access to supported file systems.
 	class FileProtocol : private NonCopyable
 	{
 	public:
 		std::uint64_t revision;
 
-		// TODO: macro to implement bit operators.
-		struct _openMode
-		{
-			enum _mode : std::uint64_t
-			{
-				Create = 0x8000000000000000,
-				Read = 1,
-				Write = 2
-			};
-		};
-
-		using OpenMode = _openMode::_mode;
-
-		struct _fileAttributes
-		{
-			enum _attributes : std::uint64_t
-			{
-				None = 0,
-				ReadOnly = 1,
-				Hidden = 2,
-				System = 4,
-				Reserved = 8,
-				Directory = 0x10,
-				Archive = 0x20,
-				ValidAttr = 0x37
-			};
-		};
-
-		using FileAttributes = _fileAttributes::_attributes;
 
 		/// @return Success The file was opened.
 		/// @return NotFound The specified file could not be found on the device.

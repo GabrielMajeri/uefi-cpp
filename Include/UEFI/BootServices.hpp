@@ -15,7 +15,7 @@ namespace UEFI
 	class BootServices : public SignedTable<0x56524553544f4f42>
 	{
 	public:
-		/// @defgroup Task Priority Services
+		/// TaskPriorityServices
 		/// @{
 		/// Raises a task’s priority level and returns its previous level.
 		/// @param newTpl The new level to raise to.
@@ -71,16 +71,24 @@ namespace UEFI
 		/// variables at the end. Therefore, you should remember to check and use descriptorSize.
 		struct MemoryDescriptor
 		{
-			MemoryType type; // 4
+			/// The type of memory in this block.
+			MemoryType type;
 
-			/// BUG: I added this after seeing it in the EDK source, it seems to be necessary.
-			std::uint32_t pad; // 4
+			/// This variable would have been added automatically by the compiler. It's here just to show there is a gap.
+			std::uint32_t _pad;
 
-			PhysicalAddress physicalStart; // 8
-			VirtualAddress virtualStart; // 8
+			/// The start of this memory range.
+			PhysicalAddress physicalStart;
 
-			std::uint64_t numberOfPages; // 8
-			MemoryAttribute attribute; // 8
+			/// This should / will always be 0 or some garbage value during startup. UEFI either uses identity mapping
+			/// or disables paging (on 32 bit) on startup.
+			VirtualAddress virtualStart;
+
+			/// How many 4 KiB pages does this block contain.
+			std::uint64_t numberOfPages;
+
+			/// Attributes describe what settings the block CAN be configured for, not necessarily the current settings.
+			MemoryAttribute attribute;
 		};
 
 		static_assert(sizeof(MemoryDescriptor) == 40);
@@ -101,6 +109,15 @@ namespace UEFI
 			return _getMemoryMap(mapSize, memoryMap, mapKey, descriptorSize, descriptorVersion);
 		}
 
+		/// Allocates pool memory.
+		/// @param poolType The type of pool to allocate.
+		/// @param size How many bytes to allocate from the pool.
+		/// @param[out] buffer Pointer to a pointer to the allocated buffer.
+		/// @return Success The requested number of bytes was allocated.
+		/// @return OutOfResources The pool requested could not be allocated.
+		/// @return InvalidParameter The type is in the range MaxMemoryType .. 0x6FFFFFFF.
+		/// @return InvalidParameter The type is PersistentMemory .
+		/// @return InvalidParameter The buffer is nullptr.
 		Status allocatePool(MemoryType poolType, std::size_t size, void** buffer)
 		{
 			return _allocatePool(poolType, size, buffer);

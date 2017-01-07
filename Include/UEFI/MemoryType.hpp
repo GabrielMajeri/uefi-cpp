@@ -20,15 +20,14 @@ namespace UEFI
 		/// used by a UEFI application to allocate pool memory.
 		LoaderData = 2,
 
-		/// @defgroup Boot services memory
+		/// Boot services memory
 		/// After calling exitBootServices(), this memory is free to use.
-		/// @{
+
 		/// The code portions of a loaded UEFI Boot Service Driver.
 		BootServicesCode = 3,
 		///The data portions of a loaded UEFI Boot Service Driver, and the default data allocation type
 		/// used by a UEFI Boot Service Driver to allocate pool memory.
 		BootServicesData = 4,
-		/// @}
 
 		/// The code portions of a loaded UEFI Runtime Driver.
 		RuntimeServicesCode = 5,
@@ -41,8 +40,9 @@ namespace UEFI
 		UnusableMemory = 8,
 
 		/// Memory that holds the ACPI tables.
+		/// After the OS reads the ACPI tables, this memory can be reclaimed.
 		ACPIReclaimMemory = 9,
-		/// Address space reserved for use by the firmware.
+		/// Address space reserved for use by the ACPI firmware.
 		ACPIMemoryNVS = 10,
 
 		/// Used by system firmware to request that a memory-mapped IO region be mapped by the OS to a virtual address,
