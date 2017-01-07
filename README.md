@@ -45,6 +45,7 @@ Performance difference? Zero. Zero cost abstractions make this possible.
   - `<utility>`: for some utility functions (e.g. std::swap()).
 
 * *(Optional)* QEmu with OVMF to be able to test UEFI apps in a virtual machine.
+* *(Optional)* Doxygen to generate documentation.
 
 # License
 This wrapper for the UEFI specification is licensed under a permissive MIT license. See [LICENSE](LICENSE) for more information.
