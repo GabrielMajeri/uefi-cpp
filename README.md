@@ -10,9 +10,9 @@ The project is composed of two parts:
 
 **The current version is based on Version 2.6 of the UEFI specification, available [here](http://www.uefi.org/specifications).**
 
-# Features
+# Example
 Here's some code that uses the old, C-style API of the specification:
-```c++
+```c
 systemTable->ConOut->OutputString(systemTable->ConOut, L"Hello UEFI!");
 ```
 
@@ -21,9 +21,9 @@ Here's some code that uses the new C++ API:
 systemTable.consoleOut.outputString(u"Hello UEFI!");
 ```
 
-And here's one that's even simpler:
+And here's one that's even more modern:
 ```c++
-// Initialize the wrapper.
+// Set the stream's output.
 out.setOutput(*systemTable.consoleOut);
 // ...
 out << u"Hello UEFI!";
@@ -31,6 +31,7 @@ out << u"Hello UEFI!";
 
 Performance difference? Zero. Zero cost abstractions make this possible.
 
+# Features
 - Uses modern C++14 features (constexpr, static_assert, strongly typed enums).
 - Mainly intended for UEFI applications, not tested for UEFI drivers.
 - Relies on some C/C++ headers, but does not require a hosted standard library.
