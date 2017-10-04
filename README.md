@@ -48,7 +48,14 @@ Performance difference? Zero. Zero cost abstractions make this possible.
 * *(Optional)* Doxygen to generate documentation.
 
 # License
-This wrapper for the UEFI specification is licensed under a permissive MIT license. See [LICENSE](LICENSE) for more information.
+The files included in this repository are licensed under the
+[Mozilla Public License, Version 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
+
+This means you are free to use the header files, even in a proprietary program,
+as long as they are unmodified. You must open source any modifications to the
+headers you use.
+
+See the license for more information.
 
 # Contributions
 Anyone is welcome to contribute to this project. 
