@@ -12,21 +12,24 @@ The project is composed of two parts:
 
 # Example
 Here's some code that uses the old, C-style API of the specification:
+
 ```c
 systemTable->ConOut->OutputString(systemTable->ConOut, L"Hello UEFI!");
 ```
 
 Here's some code that uses the new C++ API:
+
 ```c++
 systemTable.consoleOut.outputString(u"Hello UEFI!");
 ```
 
 And here's one that's even more modern:
+
 ```c++
 // Set the stream's output.
 out.setOutput(*systemTable.consoleOut);
-// ...
-out << u"Hello UEFI!";
+
+out << "Hello UEFI!";
 ```
 
 Performance difference? Zero. Zero cost abstractions make this possible.
@@ -59,4 +62,5 @@ See the license for more information.
 
 # Contributions
 Anyone is welcome to contribute to this project. 
+
 Please try to adhere to modern C++ coding style & guidelines and avoid C-style hacks. Use the **Issues** tab to submit bugs or feature requests, or submit improved code as **Pull requests**.
