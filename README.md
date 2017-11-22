@@ -1,5 +1,12 @@
 # UEFI++
 ## An object-oriented wrapper for UEFI
+
+**Note**: **I am no longer maintaining this project, instead
+  I am working on [an equivalent library][wrap] for the [Rust][rust] programming language.**
+
+[wrap]: https://github.com/GabrielMajeri/uefi-rs
+[rust]: https://www.rust-lang.org/en-US/
+
 This project is a C++ wrapper for the UEFI specification, intended for people who write UEFI applications (OS loaders, shells, etc.)
 
 This wrapper supports both 32 and 64 bit UEFI architectures.
